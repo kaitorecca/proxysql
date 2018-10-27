@@ -6,9 +6,12 @@ ENV VERSION 1.4.12
 RUN apt-get update && \
 	apt-get install -y nano iputils-ping && \
     apt-get install -y wget mysql-client && \
-	apt-get install -y proxysql && \
+    wget https://github.com/sysown/proxysql/releases/download/v${VERSION}/proxysql_${VERSION}-clickhouse-debian9_amd64.deb -O /opt/proxysql_${VERSION}-debian9_amd64.deb && \
+    dpkg -i /opt/proxysql_${VERSION}-clickhouse-debian9_amd64.deb && \
+    rm -f /opt/proxysql_${VERSION}-clickhouse-debian9_amd64.deb && \
     rm -rf /var/lib/apt/lists/*
 
+VOLUME /var/lib/proxysql
 EXPOSE 6032 6033 6090
 
 ENTRYPOINT ["proxysql", "--clickhouse-server"]
