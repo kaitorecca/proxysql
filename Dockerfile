@@ -14,4 +14,4 @@ RUN apt-get update && \
 VOLUME /var/lib/proxysql
 EXPOSE 6032 6033 6090
 
-ENTRYPOINT ["proxysql", "--clickhouse-server"]
+ENTRYPOINT ["proxysql", "-f","--clickhouse-server"]
