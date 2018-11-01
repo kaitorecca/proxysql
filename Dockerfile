@@ -20,7 +20,7 @@ RUN apt-get update && \
     apt-get install -y wget mysql-client && \
     wget https://github.com/sysown/proxysql/releases/download/v${VERSION}/proxysql-rc2_2.0.0-clickhouse-debian9_amd64.deb -O /opt/proxysql_${VERSION}-clickhouse-debian9_amd64.deb && \
     dpkg -i /opt/proxysql_${VERSION}-clickhouse-debian9_amd64.deb && \
-    && env DEBIAN_FRONTEND=noninteractive \
+    env DEBIAN_FRONTEND=noninteractive \
         apt-get install --allow-unauthenticated --yes --no-install-recommends \
             clickhouse-common-static=$version \
             clickhouse-server=$version \
@@ -28,7 +28,7 @@ RUN apt-get update && \
     && rm -rf \
         /var/cache/debconf \
         /tmp/* \
-    && apt-get clean \
+    && apt-get clean && \
     rm -f /opt/proxysql_${VERSION}-clickhouse-debian9_amd64.deb && \
     rm -rf /var/lib/apt/lists/*
 
