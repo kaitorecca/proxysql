@@ -30,6 +30,8 @@ RUN apt-get clean && \
 COPY load.sql /load.sql
 COPY start.sh /start.sh
 
+RUN chmod +x start.sh
+
 EXPOSE 6032 6033 6090 6080
 
 ENTRYPOINT ["./start.sh"]
