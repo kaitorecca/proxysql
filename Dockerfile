@@ -3,7 +3,7 @@ MAINTAINER Tai Tran <hongtai91@gmail.com>
 
 ENV VERSION 2.0.0-rc2
 ARG repository="deb http://repo.yandex.ru/clickhouse/deb/stable/ main/"
-ARG version=18.14.11
+ARG versionn=18.14.11
 ARG gosu_ver=1.10
 
 
@@ -19,16 +19,14 @@ RUN apt-get update && \
 	apt-get install -y nano iputils-ping && \
     apt-get install -y wget mysql-client && \
     wget https://github.com/sysown/proxysql/releases/download/v${VERSION}/proxysql-rc2_2.0.0-clickhouse-debian9_amd64.deb -O /opt/proxysql_${VERSION}-clickhouse-debian9_amd64.deb && \
-    dpkg -i /opt/proxysql_${VERSION}-clickhouse-debian9_amd64.deb && \
-    env DEBIAN_FRONTEND=noninteractive \
+    dpkg -i /opt/proxysql_${VERSION}-clickhouse-debian9_amd64.deb
+RUN    env DEBIAN_FRONTEND=noninteractive \
         apt-get install --allow-unauthenticated --yes --no-install-recommends \
-            clickhouse-common-static=$version \
-            clickhouse-server=$version \
-            libgcc-7-dev \
-    && rm -rf \
-        /var/cache/debconf \
-        /tmp/* \
-    && apt-get clean && \
+            clickhouse-common-static=$versionn \
+            clickhouse-server=$versionn \
+            libgcc-7-dev
+
+RUN apt-get clean && \
     rm -f /opt/proxysql_${VERSION}-clickhouse-debian9_amd64.deb && \
     rm -rf /var/lib/apt/lists/*
 
