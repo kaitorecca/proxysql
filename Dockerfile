@@ -1,7 +1,7 @@
 FROM debian:stretch
 MAINTAINER Tai Tran <hongtai91@gmail.com>
 
-ENV VERSION 1.4.12
+ENV VERSION 2.0.0-rc2
 
 RUN apt-get update && \
 	apt-get install -y nano iputils-ping && \
@@ -12,6 +12,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 VOLUME /var/lib/proxysql
-EXPOSE 6032 6033 6090
+EXPOSE 6032 6033 6090 6080
 
 ENTRYPOINT ["proxysql", "-f","--clickhouse-server"]
