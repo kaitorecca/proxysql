@@ -28,7 +28,7 @@ RUN apt-get update && \
     && rm -rf \
         /var/cache/debconf \
         /tmp/* \
-    && apt-get clean
+    && apt-get clean \
     rm -f /opt/proxysql_${VERSION}-clickhouse-debian9_amd64.deb && \
     rm -rf /var/lib/apt/lists/*
 
