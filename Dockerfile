@@ -2,19 +2,9 @@ FROM debian:stretch
 MAINTAINER Tai Tran <hongtai91@gmail.com>
 
 ENV VERSION 2.0.0-rc2
-ARG repository="deb http://repo.yandex.ru/clickhouse/deb/stable/ main/"
-ARG versionn=18.14.11
-ARG gosu_ver=1.10
 
 
-RUN apt-get update \
-    && apt-get install --yes --no-install-recommends \
-        apt-transport-https \
-        dirmngr \
-        gnupg \
-    && mkdir -p /etc/apt/sources.list.d \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv E0C56BD4 \
-    && echo $repository > /etc/apt/sources.list.d/clickhouse.list
+
 RUN apt-get update && \
 	apt-get install -y nano iputils-ping && \
     apt-get install -y wget mysql-client && \
