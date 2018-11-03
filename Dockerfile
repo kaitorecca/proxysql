@@ -21,11 +21,7 @@ COPY load.sql /load.sql
 COPY first.sql /first.sql
 COPY start.sh /start.sh
 
-RUN proxysql -f --clickhouse-server
 RUN chmod +x start.sh
-
-
-RUN mysql -uadmin -padmin -h 127.0.0.1 -P 6032 > first.sql
 
 EXPOSE 6032 6033 6090 6080
 
